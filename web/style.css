@@ -53,10 +53,18 @@ html {
   margin: 0;
 }
 
-.messages label {
-  color: dodgerblue;
+.messages label:nth-child(1) {
+  color: #ff72c0;
 }
-
+.messages label:nth-child(2) {
+  color: red;
+}
+.messages label:nth-child(3) {
+  color: green;
+}
+.messages label:nth-child(4) {
+  color: blue;
+}
 /*changing position of OK button*/
 #OKbtn {
   width: 9em;
