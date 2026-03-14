@@ -29,7 +29,8 @@ html {
 }
 
 /*changing position of where player1 enters his/her name*/
-#player1 {
+#player1,
+#player2 {
   margin-left: 2em;
   width: 15em;
   height: 2em;
@@ -38,7 +39,8 @@ html {
   border: 5px solid;
 }
 
-.left-panel label {
+.left-panel label,
+.right-panel label {
   margin-top: 50px;
   font-size: 2em;
   font-weight: bold;
