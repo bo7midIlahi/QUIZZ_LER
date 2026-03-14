@@ -30,9 +30,16 @@ html {
 
 /*changing position of where player1 enters his/her name*/
 #player1 {
-  margin-left: 20em;
+  margin-left: 2em;
   width: 15em;
   height: 2em;
   padding: 10px; /*fFIXED UNIT*/
   font-size: 20px; /*FIXED UNIT*/
+  border: 5px solid;
+}
+
+.left-panel label {
+  margin-top: 50px;
+  font-size: 2em;
+  font-weight: bold;
 }
