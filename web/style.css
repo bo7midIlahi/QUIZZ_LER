@@ -6,12 +6,14 @@ html {
 }
 
 .container {
+  /*margin-top: 5em;*/ /*THIS WHAT LOWERS PANELS*/
   display: flex; /* Activates Flexbox layout */
   height: 100vh; /* Makes the container fill the full height of the screen */
 }
 
 .left-panel,
 .right-panel {
+  /*margin-top: 5em;*/
   flex: 1; /* Each item takes an equal proportion of the available space */
   padding: 20px;
   box-sizing: border-box; /* Ensures padding/border is included in the width calculation */
@@ -24,4 +26,13 @@ html {
 
 .right-panel {
   background-color: #ddd;
+}
+
+/*changing position of where player1 enters his/her name*/
+#player1 {
+  margin-left: 20em;
+  width: 15em;
+  height: 2em;
+  padding: 10px; /*fFIXED UNIT*/
+  font-size: 20px; /*FIXED UNIT*/
 }
