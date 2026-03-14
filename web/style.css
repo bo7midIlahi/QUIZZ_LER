@@ -108,7 +108,7 @@ html {
 .glow {
   position: relative;
   z-index: 1;
-  font-size: 5em;
+  font-size: 4em;
   text-transform: uppercase;
   color: transparent;
   background: linear-gradient(

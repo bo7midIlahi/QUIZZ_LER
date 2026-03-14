@@ -3,27 +3,39 @@ const message = document.getElementById("msg");
 message.textContent =
   "PLEASE ENTER YOUR NAMES THEN CLICK ON THE BUTTON TO CONFIRM";
 
-function constructInRightPanel() {
+function constructInRightPanel(input2) {
+  const labelplayer2 = document.getElementById("namePlayer2");
   const container = document.querySelector(".right-panel");
 
-  //creating health bar
+  labelplayer2.remove();
+
+  const element = document.createElement("h2");
+  element.textContent = input2.value;
+  element.dataset.text = input2.value;
+  element.classList.add("glow");
+  container.appendChild(element);
+
   const progress = document.createElement("progress");
   progress.id = "progress";
   progress.value = 100;
-
-  //showing health bar
   container.appendChild(progress);
 }
 
-function constructInLeftPanel() {
+function constructInLeftPanel(input1) {
+  const labelplayer1 = document.getElementById("namePlayer1");
   const container = document.querySelector(".left-panel");
 
-  //creating health bar
+  labelplayer1.remove();
+
+  const element = document.createElement("h2");
+  element.textContent = input1.value;
+  element.dataset.text = input1.value;
+  element.classList.add("glow");
+  container.appendChild(element);
+
   const progress = document.createElement("progress");
   progress.id = "progress";
   progress.value = 100;
-
-  //showing health bar
   container.appendChild(progress);
 }
 
@@ -91,6 +103,6 @@ function confirm() {
   }
 
   constructInMessage();
-  constructInLeftPanel();
-  constructInRightPanel();
+  constructInLeftPanel(input1);
+  constructInRightPanel(input2);
 }
