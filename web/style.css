@@ -7,6 +7,9 @@ html {
 
 .messages {
   height: 25vh;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
@@ -41,7 +44,7 @@ html {
   font-size: 20px; /*FIXED UNIT*/
   border: 5px solid;
 }
-
+.messages label,
 .left-panel label,
 .right-panel label {
   margin-top: 50px;
@@ -49,19 +52,26 @@ html {
   font-weight: bold;
 }
 
+.messages label {
+  color: dodgerblue;
+}
+
 /*changing position of OK button*/
 #OKbtn {
-  width: 6em;
-  height: 3em;
+  width: 9em;
+  height: 4em;
   padding: 10px; /*fFIXED UNIT*/
   /*  font-size: 20px; /*FIXED UNIT*/
-  /*  border: 5px solid;
-  margin-left: 1em;*/
+  /*  border: 5px solid;*/
+  margin-left: 28.5em;
   font-size: 18px;
   letter-spacing: 2px;
   border-radius: 40px;
   background: linear-gradient(90deg, #0162c8, #55e7fc);
   color: #775bea;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
 }
 .right-panel #OKbtn {
   background: linear-gradient(90deg, #775bea, #ff72c0);
