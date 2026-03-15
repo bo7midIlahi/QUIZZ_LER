@@ -1,0 +1,68 @@
+[
+  {
+    "question": "Which CSS layout system is designed for two-dimensional layouts?",
+    "choices": ["Flexbox", "Grid", "Float"],
+    "correct_answer": 2
+  },
+  {
+    "question": "What does 'position: sticky' do?",
+    "choices": [
+      "Keeps an element fixed permanently",
+      "Scrolls normally then sticks when reaching a threshold",
+      "Positions an element relative to its parent"
+    ],
+    "correct_answer": 2
+  },
+  {
+    "question": "Which unit is relative to the root element font size?",
+    "choices": ["em", "rem", "vh"],
+    "correct_answer": 2
+  },
+  {
+    "question": "Which property controls the stacking order of positioned elements?",
+    "choices": ["z-index", "stack-order", "layer"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What does 'overflow: hidden' do?",
+    "choices": [
+      "Hides content that exceeds container bounds",
+      "Removes scrolling capability entirely",
+      "Expands the container automatically"
+    ],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which CSS function is used to create responsive column sizes in Grid?",
+    "choices": ["repeat()", "calc()", "var()"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What does 'display: contents' do?",
+    "choices": [
+      "Removes the element's box but keeps its children",
+      "Hides the element completely",
+      "Makes the element inline"
+    ],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which property allows smooth animation between property changes?",
+    "choices": ["transition", "transform", "motion"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What does 'flex: 1' mean in Flexbox?",
+    "choices": [
+      "The item grows to fill available space",
+      "The item becomes fixed width",
+      "The item is centered"
+    ],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which CSS pseudo-class selects the first child of a parent?",
+    "choices": [":first-child", ":first-element", ":child-first"],
+    "correct_answer": 1
+  }
+]

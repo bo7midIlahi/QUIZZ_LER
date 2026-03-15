@@ -1,0 +1,64 @@
+[
+  {
+    "question": "What is the purpose of the <meta charset=\"UTF-8\"> tag?",
+    "choices": [
+      "Define the document's character encoding",
+      "Enable JavaScript execution",
+      "Specify the page language"
+    ],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which HTML element is used to embed external JavaScript files?",
+    "choices": ["<script>", "<js>", "<link>"],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which attribute is required in the <img> tag for accessibility?",
+    "choices": ["title", "alt", "srcset"],
+    "correct_answer": 2
+  },
+  {
+    "question": "What does the <canvas> element provide?",
+    "choices": [
+      "A container for drawing graphics via JavaScript",
+      "A responsive image container",
+      "A vector graphics editor"
+    ],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which HTML tag is semantically correct for navigation links?",
+    "choices": ["<nav>", "<menu>", "<links>"],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which attribute allows an input field to accept multiple values?",
+    "choices": ["multiple", "many", "list"],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which HTML element defines the most important heading?",
+    "choices": ["<head>", "<h1>", "<header>"],
+    "correct_answer": 2
+  },
+  {
+    "question": "Which HTML feature allows images to change depending on screen size?",
+    "choices": ["<picture>", "<responsive>", "<media>"],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which attribute prevents a form from submitting automatically?",
+    "choices": ["novalidate", "prevent", "blocksubmit"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the purpose of the 'data-*' attributes in HTML?",
+    "choices": [
+      "Store custom data for JavaScript",
+      "Define database links",
+      "Store CSS variables"
+    ],
+    "correct_answer": 1
+  }
+]

@@ -1,0 +1,60 @@
+[
+  {
+    "question": "What will 'typeof NaN' return in JavaScript?",
+    "choices": ["number", "NaN", "undefined"],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which method converts a JSON string into a JavaScript object?",
+    "choices": ["JSON.parse()", "JSON.stringify()", "JSON.convert()"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What is the result of Boolean([]) in JavaScript?",
+    "choices": ["false", "true", "undefined"],
+    "correct_answer": 2
+  },
+  {
+    "question": "Which keyword creates a block-scoped variable?",
+    "choices": ["var", "let", "define"],
+    "correct_answer": 2
+  },
+  {
+    "question": "What does '===' do in JavaScript?",
+    "choices": [
+      "Compares value only",
+      "Compares value and type",
+      "Assigns value"
+    ],
+    "correct_answer": 2
+  },
+  {
+    "question": "Which method adds an element at the end of an array?",
+    "choices": ["push()", "append()", "add()"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What does 'this' refer to inside an object method?",
+    "choices": [
+      "The object calling the method",
+      "The global window",
+      "The function itself"
+    ],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which event fires when the DOM is fully loaded?",
+    "choices": ["DOMContentLoaded", "windowReady", "loadDOM"],
+    "correct_answer": 1
+  },
+  {
+    "question": "What will '[1,2,3].map(x => x*2)' return?",
+    "choices": ["[2,4,6]", "[1,2,3,2,4,6]", "[1,4,9]"],
+    "correct_answer": 1
+  },
+  {
+    "question": "Which JavaScript feature allows asynchronous programming using promises?",
+    "choices": ["async/await", "defer", "callbackLoop"],
+    "correct_answer": 1
+  }
+]
