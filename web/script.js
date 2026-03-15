@@ -1,3 +1,5 @@
+import { main } from "./game.js";
+
 //script to check both players entered their names
 const message = document.getElementById("msg");
 message.textContent =
@@ -105,4 +107,6 @@ function confirm() {
   constructInMessage();
   constructInLeftPanel(input1);
   constructInRightPanel(input2);
+  main();
 }
+window.confirm = confirm; // to make the confirm() global
