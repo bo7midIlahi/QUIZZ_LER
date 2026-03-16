@@ -68,12 +68,12 @@ function createAnswerLocation() {
 
   const answerPlayer1 = document.createElement("h2");
   answerPlayer1.id = "answerPlayer1";
-  answerPlayer1.textContent = "ANSWER_PLAYER1";
+  answerPlayer1.textContent = "";
   leftPanel.appendChild(answerPlayer1);
 
   const answerPlayer2 = document.createElement("h2");
   answerPlayer2.id = "answerPlayer2";
-  answerPlayer2.textContent = "ANSWER_PLAYER2";
+  answerPlayer2.textContent = "";
   rightPanel.appendChild(answerPlayer2);
 
   getAnswers();
@@ -100,6 +100,7 @@ export function timer() {
     if (time <= 0) {
       clearInterval(interval);
       clock.textContent = "Time's up!";
+      checkAnswer();
     }
   }, 1000);
 }

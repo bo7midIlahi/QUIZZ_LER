@@ -167,3 +167,11 @@ html {
 #progress {
   width: 55em;
 }
+
+/*player answers style*/
+#answerPlayer1,
+#answerPlayer2 {
+  color: #f00;
+  margin-left: 9em;
+  margin-top: 3em;
+}
