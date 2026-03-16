@@ -84,8 +84,12 @@ function createAnswerLocation() {
   getAnswers();
 }
 
-function correctAnswer(answer) {
-  return false;
+function correctAnswer(answerElement) {
+  const playerChoice = Number(answerElement.dataset.choice);
+
+  if (!playerChoice) return false;
+
+  return playerChoice === currentQuestion.correct_answer;
 }
 
 function checkAnswer() {
