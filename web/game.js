@@ -1,3 +1,5 @@
+let currentQuestion = null; /*store current question to access it globally*/
+
 export function main() {
   //export to make the function accessible from script.js
   console.log("main function");
@@ -128,14 +130,15 @@ export function timer() {
 
 function showquestion(q, i) {
   console.log("inside showquestion()");
-  const questions = document.getElementById("msg");
-  questions.textContent = q[i].question;
 
-  console.log(`choice = ${q[i].choices[i]}`);
+  currentQuestion = q[i]; // store current question
+
+  const questions = document.getElementById("msg");
+  questions.textContent = currentQuestion.question;
 
   for (let index = 0; index < currentQuestion.choices.length; index++) {
     const element = document.getElementById(`choice${index + 1}`);
-    element.textContent = q[i].choices[index];
+    element.textContent = currentQuestion.choices[index];
   }
 }
 
