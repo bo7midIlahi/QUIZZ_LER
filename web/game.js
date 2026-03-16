@@ -2,7 +2,7 @@ export function main() {
   //export to make the function accessible from script.js
   console.log("main function");
   loadQuestions("html").then((q) => showquestion(q, 0));
-  timer();
+  timer(); //1 -> left player && -1 ->right player
 }
 
 async function loadQuestions(topic) {
@@ -16,6 +16,23 @@ async function loadQuestions(topic) {
   }
 }
 
+function createAnswerLocation() {
+  const leftPanel = document.querySelector(".left-panel");
+  const rightPanel = document.querySelector(".right-panel");
+
+  const answerPlayer1 = document.createElement("h2");
+  answerPlayer1.id = "answerPlayer1";
+  answerPlayer1.textContent = "ANSWER_PLAYER1";
+  leftPanel.appendChild(answerPlayer1);
+
+  const answerPlayer2 = document.createElement("h2");
+  answerPlayer2.id = "answerPlayer2";
+  answerPlayer2.textContent = "ANSWER_PLAYER2";
+  rightPanel.appendChild(answerPlayer2);
+}
+
+function checkAnswer() {}
+
 export function timer() {
   const element = document.querySelector(".messages");
 
@@ -26,6 +43,7 @@ export function timer() {
 
   clock.textContent = time;
   element.appendChild(clock);
+  createAnswerLocation();
 
   const interval = setInterval(() => {
     time--;
