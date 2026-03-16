@@ -109,19 +109,20 @@ function checkAnswer() {
       backgroundColor: "lightgreen",
     });
   } else {
-    healthBar[0].value = -0.1;
+    healthBar[0].value = Math.max(0, healthBar[0].value - 1);
     Object.assign(answerPlayer1.style, {
       color: "red",
       backgroundColor: "pink",
     });
   }
+
   if (correctAnswer(answerPlayer2)) {
     Object.assign(answerPlayer2.style, {
       color: "green",
       backgroundColor: "lightgreen",
     });
   } else {
-    healthBar[1].value = -0.1;
+    healthBar[1].value = Math.max(0, healthBar[1].value - 1);
     Object.assign(answerPlayer2.style, {
       color: "red",
       backgroundColor: "pink",
