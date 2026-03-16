@@ -16,6 +16,25 @@ async function loadQuestions(topic) {
   }
 }
 
+function getAnswers() {
+  document.addEventListener("keydown", function (event) {
+    // Choice 1
+    if (event.code === "KeyA" || event.key.toLowerCase() === "a") {
+      console.log("Choice 1 selected");
+    }
+
+    // Choice 2
+    if (event.code === "KeyZ" || event.key.toLowerCase() === "z") {
+      console.log("Choice 2 selected");
+    }
+
+    // Choice 3
+    if (event.code === "KeyE" || event.key.toLowerCase() === "e") {
+      console.log("Choice 3 selected");
+    }
+  });
+}
+
 function createAnswerLocation() {
   const leftPanel = document.querySelector(".left-panel");
   const rightPanel = document.querySelector(".right-panel");
@@ -29,6 +48,8 @@ function createAnswerLocation() {
   answerPlayer2.id = "answerPlayer2";
   answerPlayer2.textContent = "ANSWER_PLAYER2";
   rightPanel.appendChild(answerPlayer2);
+
+  getAnswers();
 }
 
 function checkAnswer() {}
