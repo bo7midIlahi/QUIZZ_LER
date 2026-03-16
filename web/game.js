@@ -16,21 +16,48 @@ async function loadQuestions(topic) {
   }
 }
 
+function changeAnswer(playerID, choice) {
+  const element = document.getElementById(playerID);
+  element.textContent = document.getElementById(`choice${choice}`).textContent;
+}
+
 function getAnswers() {
   document.addEventListener("keydown", function (event) {
     // Choice 1
     if (event.code === "KeyA" || event.key.toLowerCase() === "a") {
       console.log("Choice 1 selected");
+      changeAnswer("answerPlayer1", 1);
     }
 
     // Choice 2
     if (event.code === "KeyZ" || event.key.toLowerCase() === "z") {
       console.log("Choice 2 selected");
+      changeAnswer("answerPlayer1", 2);
     }
 
     // Choice 3
     if (event.code === "KeyE" || event.key.toLowerCase() === "e") {
       console.log("Choice 3 selected");
+      changeAnswer("answerPlayer1", 3);
+    }
+
+    //player 2
+    //choice1
+    if (event.code === "KeyK" || event.key.toLowerCase() === "k") {
+      console.log("Choice 1 selected");
+      changeAnswer("answerPlayer2", 1);
+    }
+
+    // Choice 2
+    if (event.code === "KeyL" || event.key.toLowerCase() === "l") {
+      console.log("Choice 2 selected");
+      changeAnswer("answerPlayer2", 2);
+    }
+
+    // Choice 3
+    if (event.code === "KeyM" || event.key.toLowerCase() === "m") {
+      console.log("Choice 3 selected");
+      changeAnswer("answerPlayer2", 3);
     }
   });
 }
