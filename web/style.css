@@ -164,7 +164,8 @@ html {
 }
 
 /*health bar progress*/
-#progress {
+#progress1,
+#progress2 {
   width: 55em;
 }
 

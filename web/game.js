@@ -101,7 +101,8 @@ function correctAnswer(answerElement) {
 function checkAnswer() {
   const answerPlayer1 = document.getElementById("answerPlayer1");
   const answerPlayer2 = document.getElementById("answerPlayer2");
-  const healthBar = document.querySelectorAll('[id="progress"]');
+  const healthBar1 = document.getElementById("progress1");
+  const healthBar2 = document.getElementById("progress2");
 
   if (correctAnswer(answerPlayer1)) {
     Object.assign(answerPlayer1.style, {
@@ -109,7 +110,7 @@ function checkAnswer() {
       backgroundColor: "lightgreen",
     });
   } else {
-    healthBar[0].value = Math.max(0, healthBar[0].value - 1);
+    healthBar1.value -= 1;
     Object.assign(answerPlayer1.style, {
       color: "red",
       backgroundColor: "pink",
@@ -122,7 +123,7 @@ function checkAnswer() {
       backgroundColor: "lightgreen",
     });
   } else {
-    healthBar[1].value = Math.max(0, healthBar[1].value - 1);
+    healthBar2.value -= 1;
     Object.assign(answerPlayer2.style, {
       color: "red",
       backgroundColor: "pink",
