@@ -53,17 +53,17 @@ function startGame() {
 }
 
 function checkGameOver() {
-  if (healthBar1HR <= 0 && healthBar2HR <= 0) {
+  if (healthBar1HR <= 0 && healthBar2HR <= 0 && scorePlayer1 == scorePlayer2) {
     showWinner("Draw");
     return true;
   }
 
-  if (healthBar1HR <= 0) {
+  if (healthBar1HR <= 0 && scorePlayer1 < scorePlayer2) {
     showWinner(player2Name);
     return true;
   }
 
-  if (healthBar2HR <= 0) {
+  if (healthBar2HR <= 0 && scorePlayer1 > scorePlayer2) {
     showWinner(player1Name);
     return true;
   }
