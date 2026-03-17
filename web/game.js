@@ -23,6 +23,52 @@ function startGame() {
   timer();
 }
 
+function checkGameOver() {
+  if (healthBar1HR <= 0 && healthBar2HR <= 0) {
+    showWinner("Draw");
+    return true;
+  }
+
+  if (healthBar1HR <= 0) {
+    showWinner("Player 2");
+    return true;
+  }
+
+  if (healthBar2HR <= 0) {
+    showWinner("Player 1");
+    return true;
+  }
+
+  return false;
+}
+
+function showWinner(winner) {
+  // stop everything visually
+  document.body.innerHTML = "";
+
+  const screen = document.createElement("div");
+  screen.style.display = "flex";
+  screen.style.flexDirection = "column";
+  screen.style.justifyContent = "center";
+  screen.style.alignItems = "center";
+  screen.style.height = "100vh";
+  screen.style.fontSize = "2rem";
+
+  const text = document.createElement("h1");
+  text.textContent = `${winner} wins! 🏆`;
+
+  const button = document.createElement("button");
+  button.textContent = "Restart";
+  button.style.marginTop = "20px";
+
+  button.onclick = () => location.reload();
+
+  screen.appendChild(text);
+  screen.appendChild(button);
+
+  document.body.appendChild(screen);
+}
+
 async function loadQuestions(topic) {
   try {
     console.log("loading", topic);
@@ -127,8 +173,12 @@ function checkAnswer() {
       backgroundColor: "lightgreen",
     });
   } else {
-    healthBar1HR = Math.max(0, healthBar1HR - 20); // reduce 20%
+    healthBar1HR = Math.max(0, healthBar1HR - 20);
     healthBar1.style.width = healthBar1HR + "%";
+    healthBar1.style.backgroundColor = "red";
+    setTimeout(() => {
+      healthBar1.style.backgroundColor = "green";
+    }, 300);
 
     Object.assign(answerPlayer1.style, {
       color: "red",
@@ -143,14 +193,21 @@ function checkAnswer() {
       backgroundColor: "lightgreen",
     });
   } else {
-    healthBar2HR = Math.max(0, healthBar2HR - 20); // reduce 20%
+    healthBar2HR = Math.max(0, healthBar2HR - 20);
     healthBar2.style.width = healthBar2HR + "%";
+    healthBar2.style.backgroundColor = "red";
+    setTimeout(() => {
+      healthBar1.style.backgroundColor = "green";
+    }, 300);
 
     Object.assign(answerPlayer2.style, {
       color: "red",
       backgroundColor: "pink",
     });
   }
+
+  // 👉 CHECK GAME OVER HERE
+  if (checkGameOver()) return;
 }
 
 function resetUI() {
@@ -200,10 +257,12 @@ export function timer() {
 
       // 👉 GO TO NEXT QUESTION
       setTimeout(() => {
+        if (checkGameOver()) return;
+
         questionNumber++;
         resetUI();
         startGame();
-      }, 1000); // small delay so user sees result
+      }, 2000); //small delay so user see correct answer
     }
   }, 1000);
 }
