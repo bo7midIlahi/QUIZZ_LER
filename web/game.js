@@ -8,6 +8,12 @@ let healthBar2HR = 100;
 
 let player1Name = "";
 let player2Name = "";
+let player1Time = null;
+let player2Time = null;
+let scorePlayer1 = 0;
+let scorePlayer2 = 0;
+
+let startTime = null;
 
 export function main(file) {
   console.log("main function");
@@ -22,6 +28,7 @@ export function main(file) {
 
   loadQuestions(file).then((q) => {
     questionsList = q; // store all questions
+    createScoreUI();
     startGame(); // start loop
   });
 }
@@ -55,8 +62,28 @@ function checkGameOver() {
   return false;
 }
 
+function saveToLeaderboard() {
+  const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+  leaderboard.push({
+    player1: player1Name,
+    player2: player2Name,
+    score1: scorePlayer1,
+    score2: scorePlayer2,
+    winner:
+      scorePlayer1 > scorePlayer2
+        ? player1Name
+        : scorePlayer2 > scorePlayer1
+        ? player2Name
+        : "Draw",
+  });
+
+  localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+}
+
 function showWinner(winner) {
-  // stop everything visually
+  saveToLeaderboard();
+
   document.body.innerHTML = "";
 
   const screen = document.createElement("div");
@@ -72,12 +99,26 @@ function showWinner(winner) {
 
   const button = document.createElement("button");
   button.textContent = "Restart";
-  button.style.marginTop = "20px";
-
   button.onclick = () => location.reload();
 
   screen.appendChild(text);
   screen.appendChild(button);
+
+  // leaderboard
+  const leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+
+  const list = document.createElement("ul");
+
+  leaderboard
+    .slice(-5)
+    .reverse()
+    .forEach((game) => {
+      const item = document.createElement("li");
+      item.textContent = `${game.player1} (${game.score1}) vs ${game.player2} (${game.score2}) → ${game.winner}`;
+      list.appendChild(item);
+    });
+
+  screen.appendChild(list);
 
   document.body.appendChild(screen);
 }
@@ -97,8 +138,18 @@ function changeAnswer(playerID, choice) {
   const element = document.getElementById(playerID);
 
   element.textContent = document.getElementById(`choice${choice}`).textContent;
+  element.dataset.choice = choice;
 
-  element.dataset.choice = choice; // store choice number
+  // 👉 ADD THIS
+  const now = Date.now();
+
+  if (playerID === "answerPlayer1" && !player1Time) {
+    player1Time = now;
+  }
+
+  if (playerID === "answerPlayer2" && !player2Time) {
+    player2Time = now;
+  }
 }
 
 function getAnswers() {
@@ -173,14 +224,39 @@ function correctAnswer(answerElement) {
   return playerChoice === currentQuestion.correct_answer;
 }
 
-function checkAnswer() {
+function createScoreUI() {
+  const leftPanel = document.querySelector(".left-panel");
+  const rightPanel = document.querySelector(".right-panel");
+
+  const score1 = document.createElement("h3");
+  score1.id = "score1";
+  score1.textContent = "Score: 0";
+
+  const score2 = document.createElement("h3");
+  score2.id = "score2";
+  score2.textContent = "Score: 0";
+
+  leftPanel.appendChild(score1);
+  rightPanel.appendChild(score2);
+}
+
+function checkAnswer(responseTime = 3) {
   const answerPlayer1 = document.getElementById("answerPlayer1");
   const answerPlayer2 = document.getElementById("answerPlayer2");
   const healthBar1 = document.getElementById("progress1");
   const healthBar2 = document.getElementById("progress2");
 
+  let p1 = player1Time ? player1Time - startTime : Infinity;
+  let p2 = player2Time ? player2Time - startTime : Infinity;
+
+  const p1Correct = correctAnswer(answerPlayer1);
+  const p2Correct = correctAnswer(answerPlayer2);
+
   // PLAYER 1
-  if (correctAnswer(answerPlayer1)) {
+  if (p1Correct) {
+    let bonus = Math.max(0, Math.floor((3 - responseTime) * 5));
+    scorePlayer1 += 10 + bonus;
+
     Object.assign(answerPlayer1.style, {
       color: "green",
       backgroundColor: "lightgreen",
@@ -200,7 +276,10 @@ function checkAnswer() {
   }
 
   // PLAYER 2
-  if (correctAnswer(answerPlayer2)) {
+  if (p2Correct) {
+    let bonus = Math.max(0, Math.floor((3 - responseTime) * 5));
+    scorePlayer2 += 10 + bonus;
+
     Object.assign(answerPlayer2.style, {
       color: "green",
       backgroundColor: "lightgreen",
@@ -210,7 +289,7 @@ function checkAnswer() {
     healthBar2.style.width = healthBar2HR + "%";
     healthBar2.style.backgroundColor = "red";
     setTimeout(() => {
-      healthBar1.style.backgroundColor = "green";
+      healthBar2.style.backgroundColor = "green"; // ✅ fixed
     }, 300);
 
     Object.assign(answerPlayer2.style, {
@@ -219,11 +298,23 @@ function checkAnswer() {
     });
   }
 
-  // 👉 CHECK GAME OVER HERE
+  // SPEED BONUS (ONLY IF CORRECT)
+  if (p1Correct && p1 < p2) {
+    scorePlayer1 += 5;
+  } else if (p2Correct && p2 < p1) {
+    scorePlayer2 += 5;
+  }
+
+  // update UI
+  document.getElementById("score1").textContent = `Score: ${scorePlayer1}`;
+  document.getElementById("score2").textContent = `Score: ${scorePlayer2}`;
+
   if (checkGameOver()) return;
 }
 
 function resetUI() {
+  player1Time = null;
+  player2Time = null;
   // reset answers text
   document.getElementById("answerPlayer1").textContent = "";
   document.getElementById("answerPlayer2").textContent = "";
@@ -258,6 +349,7 @@ export function timer() {
     createAnswerLocation();
   }
 
+  startTime = Date.now();
   const interval = setInterval(() => {
     time--;
     clock.textContent = time;
@@ -266,7 +358,8 @@ export function timer() {
       clearInterval(interval);
 
       clock.textContent = "Time's up!";
-      checkAnswer();
+      let responseTime = (Date.now() - startTime) / 1000;
+      checkAnswer(responseTime);
 
       // 👉 GO TO NEXT QUESTION
       setTimeout(() => {
