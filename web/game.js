@@ -18,14 +18,17 @@ let startTime = null;
 export function main(file) {
   console.log("main function");
 
+  //remove the dropdown box
   document.getElementById("file").remove();
 
+  //saving player names
   console.log(`player1: ${document.querySelectorAll(".glow")[0].textContent}`);
   player1Name = document.querySelectorAll(".glow")[0].textContent;
 
   console.log(`player2: ${document.querySelectorAll(".glow")[1].textContent}`);
   player2Name = document.querySelectorAll(".glow")[1].textContent;
 
+  //getting questions
   loadQuestions(file).then((q) => {
     questionsList = q; // store all questions
     createScoreUI();
@@ -34,12 +37,16 @@ export function main(file) {
 }
 
 function startGame() {
+  //check if all questions are used
   if (questionNumber >= questionsList.length) {
     console.log("Game finished!");
     return;
   }
+
   showquestion(questionsList, questionNumber);
   timer();
+
+  //adding style for players answers
   const answerPlayer1 = document.getElementById("answerPlayer1");
   const answerPlayer2 = document.getElementById("answerPlayer2");
   Object.assign(answerPlayer1.style, {
@@ -106,8 +113,10 @@ function showWinner(winner) {
   const text = document.createElement("h1");
   text.textContent = `${winner} wins! 🏆`;
 
+  //create reload button
   const button = document.createElement("button");
   button.textContent = "Restart";
+  button.id = "restartBTN";
   button.onclick = () => location.reload();
 
   screen.appendChild(text);
