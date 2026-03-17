@@ -1,12 +1,26 @@
 let currentQuestion = null; /*store current question to access it globally*/
+let questionNumber = 0;
+let questionsList = [];
 let healthBar1HR = 100;
 let healthBar2HR = 100;
 
 export function main() {
-  //export to make the function accessible from script.js
   console.log("main function");
-  loadQuestions("html").then((q) => showquestion(q, 0));
-  timer(); //1 -> left player && -1 ->right player
+
+  loadQuestions("html").then((q) => {
+    questionsList = q; // store all questions
+    startGame(); // start loop
+  });
+}
+
+function startGame() {
+  if (questionNumber >= questionsList.length) {
+    console.log("Game finished!");
+    return;
+  }
+
+  showquestion(questionsList, questionNumber);
+  timer();
 }
 
 async function loadQuestions(topic) {
@@ -139,17 +153,40 @@ function checkAnswer() {
   }
 }
 
+function resetUI() {
+  // reset answers text
+  document.getElementById("answerPlayer1").textContent = "";
+  document.getElementById("answerPlayer2").textContent = "";
+
+  // reset stored choices
+  document.getElementById("answerPlayer1").dataset.choice = "";
+  document.getElementById("answerPlayer2").dataset.choice = "";
+
+  // reset colors of choices
+  for (let i = 1; i <= 3; i++) {
+    const choice = document.getElementById(`choice${i}`);
+    choice.style.backgroundColor = "";
+  }
+}
+
 export function timer() {
   const element = document.querySelector(".messages");
 
-  const clock = document.createElement("h2");
-  clock.id = "clock";
+  let clock = document.getElementById("clock");
+
+  // prevent multiple clocks
+  if (!clock) {
+    clock = document.createElement("h2");
+    clock.id = "clock";
+    element.appendChild(clock);
+  }
 
   let time = 3;
-
   clock.textContent = time;
-  element.appendChild(clock);
-  createAnswerLocation();
+
+  if (!document.getElementById("answerPlayer1")) {
+    createAnswerLocation();
+  }
 
   const interval = setInterval(() => {
     time--;
@@ -157,8 +194,16 @@ export function timer() {
 
     if (time <= 0) {
       clearInterval(interval);
+
       clock.textContent = "Time's up!";
       checkAnswer();
+
+      // 👉 GO TO NEXT QUESTION
+      setTimeout(() => {
+        questionNumber++;
+        resetUI();
+        startGame();
+      }, 1000); // small delay so user sees result
     }
   }, 1000);
 }
