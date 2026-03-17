@@ -1,11 +1,11 @@
 # QUIZZ_LER
 
 <p align="center">
-  <img
+  <video
     src="img/Screencast_20260317_140648.webm"
     alt="vid"
     width=100%
-  />
+  /></video>
 </p>
 <h2 align="center">A web quiz about about html/css/js</h2>
 
