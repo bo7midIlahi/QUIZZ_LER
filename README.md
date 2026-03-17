@@ -36,7 +36,7 @@ flowchart LR
 
 ```mermaid
 sequenceDiagram
-    Select Subject->>Show question: subject question 
+    Select Subject->>Show question: subject question
     Show question->>Select: show options
     Select->>Verify: check answers
     Verify->>Score: update score
@@ -44,9 +44,10 @@ sequenceDiagram
 ```
 
 ## 💻 Technology
-* HTML
-* CSS
-* JS
+
+- HTML
+- CSS
+- JS
 
 ## 🆚 Score Comparison
 
@@ -58,6 +59,7 @@ sequenceDiagram
 |    player x wrong     | health -20% for player x |
 
 ## New discoveries
+
 <details>
 <summary>Get time</summary>
   
@@ -87,9 +89,9 @@ async function loadQuestions(topic) {
 <details>
 <summary>Modular Coding</summary>
 
-  when importing from another **.js** file, thie **export** before the used function must be written:
-  ```javascript
-      
+when importing from another **.js** file, thie **export** before the used function must be written:
+
+```javascript
 export function main(file) {
   console.log("main function");
 
@@ -107,6 +109,6 @@ export function main(file) {
     startGame(); // start loop
   });
 }
-  ```
-</details>
+```
 
+</details>
